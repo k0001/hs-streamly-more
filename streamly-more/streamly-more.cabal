@@ -1,0 +1,53 @@
+cabal-version: 2.4
+name: streamly-more
+version: 0.1.0
+license: NONE
+license-file: LICENSE
+extra-source-files: README.md CHANGELOG.md
+author: Renzo Carbonara
+maintainer: renλren.zone
+copyright: Renzo Carbonara, 2021
+category: Money
+build-type: Simple
+synopsis: More streamly related tools
+description: More streamly related tools.
+homepage: https://github.com/k0001/hs-streamly-more
+bug-reports: https://gitlab.com/k0001/hs-streamly-more
+tested-with: GHC==9.6.2
+
+common basic
+  default-language: GHC2021
+  ghc-options: -O2 -Wall
+  build-depends:
+    base ==4.*,
+    streamly,
+    streamly-core,
+  default-extensions:
+    BangPatterns
+    DeriveAnyClass
+    DerivingStrategies
+    LambdaCase
+    ScopedTypeVariables
+    TypeApplications
+
+library
+  import: basic
+  hs-source-dirs: lib
+  build-depends:
+    bytestring,
+    exceptions,
+    binary,
+    transformers,
+  exposed-modules:
+    Streamly.More.Binary
+    Streamly.More.Trans
+
+test-suite test
+  import: basic
+  default-language: GHC2021
+  ghc-options: -threaded -with-rtsopts=-N
+  type: exitcode-stdio-1.0
+  hs-source-dirs: test
+  main-is: Main.hs
+  build-depends:
+    streamly-more
